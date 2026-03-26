@@ -42,9 +42,9 @@ class HUNO(UNIT3D):
             console.print(f'{self.tracker}: No audio languages were found, the upload cannot continue.')
             return False
 
-        if meta['video_codec'] != "HEVC" and meta['type'] in {"ENCODE", "WEBRIP", "DVDRIP", "HDTV"}:
+        if meta['video_codec'] not in ("AVC", "HEVC", "AV1") and meta['type'] in {"ENCODE", "WEBRIP", "DVDRIP", "HDTV"}:
             if not meta['unattended']:
-                console.print('[bold red]Only x265/HEVC encodes are allowed at HUNO')
+                console.print('[bold red]Only AVC, HEVC, and AV1 encodes are allowed at HUNO')
             return False
 
         if not meta['valid_mi_settings']:
